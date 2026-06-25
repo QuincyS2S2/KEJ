@@ -1,0 +1,684 @@
+@charset "UTF-8";
+
+/* ============================================================
+   외부 폰트
+   ============================================================ */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+@font-face {
+    font-family: 'KimJeongCheolHandwriting';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/KimjungchulScript-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KimJeongCheolHandwriting';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/KimjungchulScript-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KimJeongCheolHandwriting';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/KimjungchulScript-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+
+/* ============================================================
+   디자인 토큰 (CSS 변수) — 프로젝트 전체 공통값
+   ============================================================ */
+:root {
+    /* 색상 */
+    --color-bg:          #121212;
+    --color-surface:     #1E1E1E;
+    --color-surface-alt: #2A2A2A;
+    --color-border:      rgba(255, 255, 255, 0.10);
+
+    --color-text-primary:   #E0E0E0;
+    --color-text-secondary: #9E9E9E;
+    --color-text-dark:      #1E1E1E;
+
+    --color-accent:       #4ECBA0;
+    --color-accent-dark:  #007A55;
+    --color-accent-muted: #4B5E56;
+
+    /* 타이포그래피 */
+    --font-sans:        "Pretendard Variable", Arial, Helvetica, sans-serif;
+    --font-handwriting: 'KimJeongCheolHandwriting', cursive;
+
+    /* 간격 */
+    --space-xs:  8px;
+    --space-sm:  16px;
+    --space-md:  24px;
+    --space-lg:  40px;
+    --space-xl:  80px;
+    --space-2xl: 160px;
+
+    /* 컨테이너 너비 */
+    --container-width: 1024px;
+
+    /* 기타 */
+    --radius-sm: 4px;
+    --radius-md: 10px;
+    --transition: 0.2s ease;
+}
+
+
+/* ============================================================
+   리셋 & 기본값
+   ============================================================ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    background-color: var(--color-bg);
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+img {
+    display: block;
+    background-color: transparent;
+}
+
+
+/* ============================================================
+   레이아웃 — 공통 래퍼
+   ============================================================ */
+.wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.container {
+    width: var(--container-width);
+    margin: 0 auto;
+}
+
+
+/* ============================================================
+   헤더 (KEJ 공통 헤더와 동일 구조)
+   ============================================================ */
+header {
+    width: 100%;
+    border-bottom: 1px solid var(--color-text-secondary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-bg);
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    padding: 20px 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-light {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.logo {
+    width: 91px;
+    height: 46px;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.nav-txt {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.nav-txt > ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-txt a {
+    color: var(--color-text-secondary);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-txt a:hover {
+    color: var(--color-text-primary);
+    text-shadow: 0 0 4px var(--color-text-primary);
+}
+
+/* 현재 페이지 표시 */
+.nav-txt a.active {
+    color: var(--color-accent);
+}
+
+.login {
+    display: flex;
+    padding: 6px;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-text-primary);
+    border: 1px solid var(--color-text-primary);
+    border-radius: var(--radius-sm);
+}
+
+.login a {
+    background: transparent;
+    color: var(--color-text-dark);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.login a:hover {
+    color: var(--color-text-dark);
+}
+
+.login:hover {
+    box-shadow: 0 0 30px var(--color-text-primary);
+}
+
+
+/* ============================================================
+   메인 콘텐츠 영역
+   ============================================================ */
+main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+    padding: var(--space-2xl) 0;
+    flex: 1;
+}
+
+
+/* ============================================================
+   푸터 (KEJ 공통 푸터와 동일 구조)
+   ============================================================ */
+footer {
+    padding: 40px 40px 60px;
+    background: var(--color-surface);
+}
+
+.footer-in {
+    width: var(--container-width);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 auto;
+}
+
+.footer-main {
+    display: flex;
+    width: 141px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.language {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.language h3 {
+    color: var(--color-text-secondary);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.custom-select {
+    width: 180px;
+    padding: 10px 40px 10px 16px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #88C999;
+    background-color: var(--color-surface-alt);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-md);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.05);
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23E0E0E0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+.custom-select:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-icon {
+    height: 71px;
+    align-self: stretch;
+}
+
+.footer-icon img {
+    width: 100%;
+}
+
+.nav-footer > ul {
+    display: flex;
+    align-items: flex-start;
+    gap: 80px;
+}
+
+.nav-footer > ul > li {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: var(--color-text-primary);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.nav-footer > ul > li > ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.nav-footer > ul > li > ul > li {
+    color: var(--color-text-secondary);
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: color var(--transition);
+}
+
+.nav-footer > ul > li > ul > li:hover {
+    color: var(--color-text-primary);
+}
+
+
+/* 여기부터 단일 페이지 전용 스타일 시작 */
+
+
+.sub-face-top, .sub-face-bottom {
+    width: 150px;
+    height: 150px;
+}
+
+.sub-face-top img, .sub-face-bottom img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.subscription-box {
+    display : flex;
+    gap : 20px;
+}
+
+.basic, .pro, .max {
+  /* 기존 레이아웃 및 크기 설정 */
+  display: flex;
+  width: 300px;
+  height: 600px;
+  padding: 0 32px 27px 31px;
+  border-radius: 10px;
+
+  /* 1. 배경 그라디언트 (기존 코드 유지: 투명도가 있어야 유리가 비쳐 보입니다) */
+  background: linear-gradient(180deg, rgba(30, 30, 30, 0.20) 0%, rgba(132, 132, 132, 0.20) 100%);
+
+  /* 2. 흐릿함 (Blur: 4) */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /* Safari 브라우저 호환성을 위한 코드 */
+
+  /* 3. 빛 반사 테두리 (유리 질감 극대화) */
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+
+  /* 4. 빛(-45도, 80%)과 깊이(Depth: 20) 표현 */
+  box-shadow: 
+    -1px -1px 2px rgba(255, 255, 255, 0.1) inset, /* 좌측 상단(-45도)에서 오는 내부 반사광 */
+    0 10px 20px rgba(0, 0, 0, 0.2); /* 요소가 떠 있는 듯한 깊이감(그림자) */
+
+  transition: transform 0.3s ease; /* 호버 시 부드러운 움직임을 위한 트랜지션 */
+}
+
+.txt-box {
+    display: flex;
+    padding: 30px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 56px;
+    flex-shrink: 0;
+    flex: 1;
+}
+
+.title-box {
+    display : flex;
+    flex-direction : column;
+    gap : 56px;
+}
+
+.title-box span {
+    color: var(--text, #E0E0E0);
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display : flex;
+    justify-content: center;
+}
+
+.title {
+    display : flex;
+    flex-direction : column;
+    gap : 8px;
+    text-align: center;
+
+}
+
+.title h1 {
+    color: var(--text, #E0E0E0);
+    text-align: center;
+    /* 메인 제목 */
+    font-family: Pretendard;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.title h2 {
+    color: var(--text, #E0E0E0);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.normal {
+        display: flex;
+        padding: 10px 16px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 99px;
+        border: 1px solid var(--text, #9E9E9E);
+        width: fit-content;
+}
+
+.normal h3 {
+    color: var(--text, #9E9E9E);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.upgrade {
+        display: flex;
+        padding: 10px 16px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 99px;
+        background: var(--unnamed, #4ECBA0);
+        box-shadow: 0 0 8px 0 rgba(168, 255, 217, 0.50);
+        width: fit-content;
+}
+
+.upgrade h3 {
+    color: var(--main, #1E1E1E);
+text-align: center;
+font-family: Pretendard;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.Subscription-system h3 {
+    color: var(--text, #E0E0E0);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.Subscription-system h2 {
+    color: var(--text, #E0E0E0);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.Subscription-system {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom : 50px;
+    gap: 12px;
+}
+
+.pro.next {
+  background: linear-gradient(180deg, rgba(92, 239, 141, 0.20) 0%, rgba(97, 188, 162, 0.20) 100%);
+  
+  box-shadow: 
+    -1px -1px 2px rgba(255, 255, 255, 0.1) inset, /* 기존 좌측 상단 반사광 */
+    0 10px 20px rgba(0, 0, 0, 0.2),               /* 기존 떠있는 듯한 그림자 */
+    0 0 15px 0 rgba(156, 255, 182, 0.4);          /* 🟢 테두리 밖으로 퍼지는 초록색 빛 */
+  border: 1px solid rgba(156, 255, 182, 0.3);
+}
+
+.skill ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skill ul li {
+    display : flex;
+    align-items : center;
+    gap : 8px;
+}
+
+/* 구독 안내 & 토큰 가이드 공통 */
+.guide,
+.token-guide {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.guide span,
+.token-guide ul li span {
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s ease;
+}
+
+.guide:hover span,
+.token-guide ul li:hover span {
+    color: var(--color-accent);
+}
+
+.guide:hover svg path,
+.token-guide ul li:hover svg path {
+    fill: var(--color-accent);
+    transition: fill 0.2s ease;
+}
+
+.pro:hover,
+.basic:hover,
+.max:hover {
+    transform: translateY(-5px);
+}
+
+
+.sub-face-top {
+    position : absolute;
+    top : 20%;
+    left : 80%;
+    transition : transform 0.3s ease;
+    animation: faceMove1 3s infinite;
+}
+
+.sub-face-bottom {
+    position : absolute;
+    top : 96%;
+    left : 20%;
+    transition : transform 0.3s ease;
+    animation: faceMove2 3s infinite;
+}
+
+@keyframes faceMove1 {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(10px, -10px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes faceMove2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-10px, 10px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.box-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.main-token {
+    display: flex;
+    width: 1024px;
+    flex-direction: column;
+    gap: 12px;
+    
+}
+.token-grid {
+    display: grid;
+    height: 412px;
+    row-gap: 12px;
+    column-gap: 20px;
+    align-self: stretch;
+    grid-template-rows: repeat(2,minmax(0,1fr));
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    grid-auto-flow: row;
+
+}
+
+.TokenPurchase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.token-box {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    
+    flex-direction: column;
+    justify-content: center; /* 추가: 수직 중앙 정렬 */
+    align-items: center;     /* 변경: 수평 중앙 정렬 (flex-start -> center) */
+    gap: 10px;
+    align-self: stretch;
+    grid-row: span 1;
+    grid-column: span 1;
+    justify-self: stretch;
+    border-radius: 20px;
+
+    background: linear-gradient(180deg, rgba(30, 30, 30, 0.20) 0%, rgba(132, 132, 132, 0.20) 100%);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    box-shadow: 
+        -1px -1px 2px rgba(255, 255, 255, 0.1) inset,
+        0 10px 20px rgba(0, 0, 0, 0.2);
+
+    transition: transform 0.3s ease;
+}
+
+.token-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.box-token {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.token-guide ul {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.token-guide ul li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: color var(--transition);
+}
+.token-box:hover {
+    transform: translateY(-8px); 
+    box-shadow: 
+        -1px -1px 2px rgba(255, 255, 255, 0.15) inset,
+        0 15px 30px rgba(0, 0, 0, 0.3); 
+}
